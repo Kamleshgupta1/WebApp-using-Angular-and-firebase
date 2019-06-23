@@ -1,0 +1,42 @@
+<div class="edit-page">
+    
+    <div class="bg-white d-flex justify-content-between py-3 px-2">
+      <a routerLink="/" class="btn btn-outline-primary">
+        <i class="fas fa-backward"></i>
+        Go Back
+      </a>
+      <a routerLink="/new-user" class="btn btn-outline-success">
+        <i class="fas fa-plus custom-fa-plus"></i>
+        Add Topic
+      </a>
+    </div>
+
+    <br>
+    <br>
+    
+  <div class="page-content">
+      
+    <div class="row justify-content-start bg-white mx-1 pt-4">
+        <div class="col-md-3 m-2">   
+            <img [src]="item.image" alt="{{ item.name }}"/>
+        </div>
+        <br><br> 
+        <div class="col-md-4 mt-5">
+            <h6 class="mb-1">Title: {{item.name}} {{item.surname}}</h6>
+            <small>Category: {{item.category}}</small><br>
+            <small>Written by: {{item.auther}}</small>
+        </div>
+    </div>
+    <div class="bg-white py-3 px-4">
+        <p class="mb-1">{{item.description}}</p>
+    </div>
+    <br>
+    <div class="d-flex justify-content-end bg-white py-3" *ngIf="afAuth.user | async as user;">
+        <button class="btn btn-outline-primary" (click)="editDetails(item.id)" type="button">
+            Edit 
+        </button>
+    </div>
+
+      
+  </div>
+</div>

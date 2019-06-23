@@ -1,0 +1,22 @@
+.filter-by-age {
+  color: #6c757d;
+
+  .title {
+    align-self: center;
+  }
+
+  .age-slider {
+    width: 85%;
+  }
+}
+
+.card-body{
+    height: 240px;
+    img{
+        height: 160px;
+        width:100%;
+        margin: 0px;
+        object-fit: cover;
+    }
+}
+

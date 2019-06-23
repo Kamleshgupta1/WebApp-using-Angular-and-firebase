@@ -1,0 +1,139 @@
+<div class="create-page">
+    
+    <div class="bg-white d-flex justify-content-between py-3 px-2">
+      <a routerLink="/" class="btn btn-outline-primary">
+        <i class="fas fa-backward"></i>
+        Go Back
+      </a>
+    </div>
+    
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Create new topic</li>
+    </ol>
+  </nav>
+  <div class="page-content">
+    <div class="row d-flex justify-content-center ">
+      <div class="col col-md-10">
+
+        <form class="create-form" [formGroup]="exampleForm" novalidate (ngSubmit)="onSubmit(exampleForm.value)">
+            
+            <div class="row">
+                <div class="col col-md-8">
+
+                    <div class="form-group">
+                    <mat-form-field class="input-style">
+                      <input matInput placeholder="Auther" class="form-control" formControlName="auther">
+                    </mat-form-field>
+                    <ng-container *ngFor="let validation of validation_messages.auther">
+                      <mat-error
+                        *ngIf="exampleForm.get('auther').hasError(validation.type) && (exampleForm.get('auther').dirty || exampleForm.get('auther').touched)">
+                        {{validation.message}}</mat-error>
+                    </ng-container>
+                  </div>
+
+                  <div class="form-group">
+                    <mat-form-field class="input-style">
+                      <input matInput placeholder="Title" class="form-control" formControlName="name">
+                    </mat-form-field>
+                    <ng-container *ngFor="let validation of validation_messages.name">
+                      <mat-error
+                        *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">
+                        {{validation.message}}</mat-error>
+                    </ng-container>
+                  </div>
+
+                    <div class="input-group">
+                      <div class="input-group-prepend">
+                        <label class="input-group-text" for="category">Category</label>
+                      </div>
+                      <select class="custom-select" id="category" formControlName="category">
+                        <option *ngFor="let category of categoryList" value="{{category}}">{{category}}</option>
+                      </select>
+                    </div>
+
+                  <div class="form-group">
+                      <mat-form-field class="input-style"> 
+                          <input matInput placeholder="Image URL" class="form-control" [(ngModel)] ='image' formControlName="image">
+                      </mat-form-field>
+                      <ng-container *ngFor="let validation of validation_messages.image">
+                          <mat-error
+                            *ngIf="exampleForm.get('image').hasError(validation.type) && (exampleForm.get('image').dirty || exampleForm.get('image').touched)">
+                            {{validation.message}}</mat-error>
+                      </ng-container>
+                  </div>
+                    
+                </div>
+                <div class="col-md-4 mt-4">
+                    <img class="m-0 p-0" src="{{image}}"/>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <textarea placeholder="Description" rows="4" cols="50" class="form-control" formControlName="description">
+                </textarea>
+                <ng-container *ngFor="let validation of validation_messages.description">
+                  <mat-error
+                    *ngIf="exampleForm.get('description').hasError(validation.type) && (exampleForm.get('description').dirty || exampleForm.get('description').touched)">
+                    {{validation.message}}</mat-error>
+                </ng-container>
+            </div>
+            
+            <div class="input-group mt-4">
+              <button mat-raised-button class="submit-button" color="primary" type="submit"
+                [disabled]="!exampleForm.valid">Create</button>
+            </div>
+    
+        </form>
+      </div>
+    </div>
+      
+          <form [formGroup]="addBookForm">
+            <div class="formDescription">
+              <div formArrayName="bookDescriptionDetail">
+                <div class="descDetailPos" *ngFor="let paragraph of addBookForm.get('bookDescriptionDetail')['controls']; let i = index">
+                  <textarea class="bookDescInput" rows="4" cols="50" [formControlName]="i"></textarea>
+                  <span (click)="removeDetailPos(i)" *ngIf="addBookForm.get('bookDescriptionDetail')['controls'].length > 1" class="deleteDescPos">X</span>
+                </div>
+              </div>
+              <button class="btn btn-outline-primary" (click)="newParagraph()">Add new paragraph</button>
+            </div>
+          </form>
+    
+  </div>
+</div>
+
+<!--
+  <form [formGroup]="addBookForm">
+    <div class="formDescription">
+      <div formArrayName="bookDescriptionDetail">
+        <div class="descDetailPos" *ngFor="let paragraph of addBookForm.get('bookDescriptionDetail')['controls']; let i = index">
+          <textarea class="bookDescInput" rows="4" cols="50" [formControlName]="i"></textarea>
+          <span (click)="removeDetailPos(i)" *ngIf="addBookForm.get('bookDescriptionDetail')['controls'].length > 1" class="deleteDescPos">X</span>
+        </div>
+      </div>
+      <button type="button" class="newParagraph" (click)="newParagraph()">Add new paragraph</button>
+    </div>
+  </form>
+
+<div class="row">
+            <div class="col-md-4 ml-3 my-4">
+              <button mat-raised-button class="submit-button" color="primary" type="submit"
+                [disabled]="!exampleForm.valid">Create</button>
+            </div>
+      </div>
+
+<div class="px-2">
+          <form [formGroup]="addBookForm">
+            <div class="formDescription">
+              <div formArrayName="bookDescriptionDetail">
+                <div class="descDetailPos" *ngFor="let paragraph of addBookForm.get('bookDescriptionDetail')['controls']; let i = index">
+                  <textarea class="bookDescInput" rows="4" cols="50" [formControlName]="i"></textarea>
+                  <span (click)="removeDetailPos(i)" *ngIf="addBookForm.get('bookDescriptionDetail')['controls'].length > 1" class="deleteDescPos">X</span>
+                </div>
+              </div>
+              <button class="btn btn-outline-primary" (click)="newParagraph()">Add new paragraph</button>
+            </div>
+          </form>
+      </div>
+-->

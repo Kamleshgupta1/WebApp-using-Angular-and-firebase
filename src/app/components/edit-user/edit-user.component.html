@@ -1,0 +1,80 @@
+<div class="edit-page">
+    
+    <div class="bg-white d-flex justify-content-between py-3 px-2">
+      <a (click)="backClicked()" class="btn btn-outline-primary">
+        <i class="fas fa-backward"></i>
+        Go Back
+      </a>
+      <a routerLink="/new-user" class="btn btn-outline-success">
+        <i class="fas fa-plus custom-fa-plus"></i>
+        Add Topic
+      </a>
+    </div>
+    
+  <nav aria-label="breadcrumb">
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item active" aria-current="page">Edit User</li>
+    </ol>
+  </nav>
+  <div class="page-content">
+    <div class="row d-flex justify-content-center">
+
+      <div class="col col-md-8">
+
+        <form class="edit-form" [formGroup]="exampleForm" novalidate 
+          (ngSubmit)="onSubmit(item.id, exampleForm.value)">
+
+          <div class="form-group">
+            <mat-form-field class="input-style">
+              <input matInput placeholder="Name" class="form-control" formControlName="name">
+            </mat-form-field>
+            <ng-container *ngFor="let validation of validation_messages.name">
+              <mat-error
+                *ngIf="exampleForm.get('name').hasError(validation.type) && (exampleForm.get('name').dirty || exampleForm.get('name').touched)">
+                {{validation.message}}</mat-error>
+            </ng-container>
+          </div>
+            
+            <div class="input-group">
+                <div class="input-group-prepend">
+                    <label class="input-group-text" for="category">Category</label>
+                </div>
+                <select matInput class="custom-select" id="category" formControlName="category">
+                    <option *ngFor="let category of categoryList" value="{{category}}">{{category}}</option>
+                </select>
+            </div>
+            
+          <div class="form-group">
+              <mat-form-field class="input-style">
+                  <input matInput placeholder="Image URL" class="form-control" formControlName="image">
+              </mat-form-field>
+              <ng-container *ngFor="let validation of validation_messages.image">
+                  <mat-error
+                    *ngIf="exampleForm.get('image').hasError(validation.type) && (exampleForm.get('image').dirty || exampleForm.get('image').touched)">
+                    {{validation.message}}</mat-error>
+              </ng-container>
+          </div>
+            
+            <div class="form-group">
+                <mat-form-field class="input-style">
+                    <textarea matInput placeholder="Description" rows="4" cols="50" class="form-control" formControlName="description"></textarea>
+                </mat-form-field>
+                <ng-container *ngFor="let validation of validation_messages.description">
+                  <mat-error
+                    *ngIf="exampleForm.get('description').hasError(validation.type) && (exampleForm.get('description').dirty || exampleForm.get('description').touched)">
+                    {{validation.message}}</mat-error>
+                </ng-container>
+            </div>
+
+          <div class="row d-flex justify-content-between ">
+              <button class="btn btn-outline-success ml-3" type="submit"
+                [disabled]="!exampleForm.valid">Save</button>
+              
+              <button class="btn btn-outline-danger mr-3" type="button"
+                (click)="delete(item.id)">Delete</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
