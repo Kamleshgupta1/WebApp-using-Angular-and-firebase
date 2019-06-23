@@ -6,7 +6,7 @@
  <BR><BR>
 ![IMG4](https://user-images.githubusercontent.com/36782859/59975263-18038500-95d4-11e9-8faa-f57b256c7272.png)
 
-# Angular 7 Firebase CRUD
+# WebApp-using-Angular-and-firebase
 
 ## Install dependencies
 
